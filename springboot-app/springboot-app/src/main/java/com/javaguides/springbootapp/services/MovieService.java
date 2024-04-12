@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class MovieService implements IMovieService{
     @Autowired
     public IMovieRepository movieRepository;
+    private static AtomicLong counter=new AtomicLong();
     @Override
     public List<Movie> findAll() {
         return movieRepository.findAll();
@@ -20,6 +22,8 @@ public class MovieService implements IMovieService{
 
     @Override
     public Optional<Movie> create(MoviePostDTO newMovie) throws Exception {
-        return Optional.empty();
+        Long newId = (Long) counter.incrementAndGet();
+        Movie createdMovie = new Movie(newId, newMovie.Title, newMovie.Genre, newMovie.Year);
+        return Optional.of(movieRepository.save(createdMovie));
     }
 }
