@@ -12,12 +12,6 @@ public class Movie {
     public String Genre;
     public Long Year;
     public Movie(){}
-    public Movie(Long id, String title, String genre, Long year){
-        Id = id;
-        Title = title;
-        Genre = genre;
-        Year = year;
-    }
     public Movie(String title, String genre, Long year){
         Title = title;
         Genre = genre;

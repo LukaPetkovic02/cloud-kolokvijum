@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicLong;
 public class MovieService implements IMovieService{
     @Autowired
     public IMovieRepository movieRepository;
-    private static AtomicLong counter=new AtomicLong();
     @Override
     public List<Movie> findAll() {
         return movieRepository.findAll();
@@ -22,8 +21,7 @@ public class MovieService implements IMovieService{
 
     @Override
     public Optional<Movie> create(MoviePostDTO newMovie) throws Exception {
-        Long newId = (Long) counter.incrementAndGet();
-        Movie createdMovie = new Movie(newId, newMovie.Title, newMovie.Genre, newMovie.Year);
+        Movie createdMovie = new Movie(newMovie.Title, newMovie.Genre, newMovie.Year);
         return Optional.of(movieRepository.save(createdMovie));
     }
 }
