@@ -2,7 +2,7 @@ package com.javaguides.springbootapp.model;
 
 import jakarta.persistence.*;
 
-@Table(name="movie")
+@Table(name="sv_16_2021")
 @Entity
 public class Movie {
     @Id
